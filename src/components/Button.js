@@ -2,7 +2,6 @@ import React from "react";
 
 class Button extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div className='ui container'>
         <button
@@ -10,7 +9,7 @@ class Button extends React.Component {
           className='ui button lg'
           style={{ color: this.props.colorData.hex }}
         >
-          Click me
+          {this.props.btnText}
         </button>
       </div>
     );

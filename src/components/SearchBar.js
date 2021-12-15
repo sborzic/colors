@@ -4,7 +4,11 @@ class SearchBar extends React.Component {
   state = { term: "" };
 
   onInputChange = (event) => {
-    this.setState({ term: event.target.value });
+    this.setState(
+      { term: event.target.value },
+      this.props.getSearchTerm(event.target.value)
+    );
+    console.log(this.state.term);
   };
 
   render() {
@@ -14,8 +18,8 @@ class SearchBar extends React.Component {
           <div className='field'>
             <label>Enter hex value</label>
             <input
-              onChange={this.onInputChange}
               value={this.state.term}
+              onChange={this.onInputChange}
               type='text'
             ></input>
           </div>
