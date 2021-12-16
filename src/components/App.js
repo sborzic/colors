@@ -4,7 +4,7 @@ import List from "./List";
 import SearchBar from "./SearchBar";
 
 class App extends React.Component {
-  state = { hex: "Click me", colors: [], btnText: "Click Me" };
+  state = { hex: "Click me", colors: [] };
 
   onButtonClick = async () => {
     await fetch("http://www.colr.org/json/color/random", {
@@ -34,6 +34,13 @@ class App extends React.Component {
     } else alert("Color already added");
   };
 
+  handleDragEnd = (result) => {
+    const items = this.state.colors;
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    this.setState({ colors: items });
+  };
+
   render() {
     return (
       <div className='ui container'>
@@ -46,7 +53,12 @@ class App extends React.Component {
           colorData={this.state}
           btnText={this.state.hex}
         />
-        <List colors={this.state.colors} />
+        <List
+          handleDragEnd={this.handleDragEnd}
+          colors={this.state.colors}
+          className='ui segment'
+          currentColor={this.state.hex}
+        />
       </div>
     );
   }
