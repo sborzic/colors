@@ -14,8 +14,9 @@ class App extends React.Component {
       .then((data) => {
         let { hex, colors } = this.state;
         hex = `#${data.colors[0].hex}`;
-        colors.push(hex);
-        if (hex !== "#" && this.state.hex !== hex) {
+        if (hex.length === 7 && colors.indexOf(hex) === -1) {
+          console.log(hex.length);
+          colors.push(hex);
           this.setState({ hex, colors });
         }
       });
@@ -25,10 +26,21 @@ class App extends React.Component {
     this.setState({ btnText: term });
   };
 
+  handleSubmit = (term) => {
+    const colors = this.state.colors;
+    if (colors.indexOf(term) === -1) {
+      colors.push(term);
+      this.setState({ colors });
+    } else alert("Color already added");
+  };
+
   render() {
     return (
       <div className='ui container'>
-        <SearchBar getSearchTerm={this.getSearchTerm} />
+        <SearchBar
+          handleSubmit={this.handleSubmit}
+          getSearchTerm={this.getSearchTerm}
+        />
         <Button
           buttonClicked={this.onButtonClick}
           colorData={this.state}
