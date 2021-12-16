@@ -6,7 +6,7 @@ class Button extends React.Component {
       <div className='ui container'>
         <button
           onClick={this.props.buttonClicked}
-          className='ui button lg'
+          className='ui button'
           style={{ color: this.props.colorData.hex }}
         >
           {this.props.btnText}

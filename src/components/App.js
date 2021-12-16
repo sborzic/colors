@@ -22,7 +22,6 @@ class App extends React.Component {
   };
 
   getSearchTerm = (term) => {
-    console.log(term);
     this.setState({ btnText: term });
   };
 

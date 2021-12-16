@@ -8,19 +8,25 @@ class SearchBar extends React.Component {
       { term: event.target.value },
       this.props.getSearchTerm(event.target.value)
     );
-    console.log(this.state.term);
+  };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(typeof this.state.term);
+    // this.props.handleSubmit(this.state.term);
   };
 
   render() {
     return (
       <div className='ui segment'>
-        <form className='ui form'>
+        <form onSubmit={this.onFormSubmit} className='ui form'>
           <div className='field'>
             <label>Enter hex value</label>
             <input
               value={this.state.term}
               onChange={this.onInputChange}
               type='text'
+              pattern='#[0-9a-fA-F]{6}'
             ></input>
           </div>
         </form>
