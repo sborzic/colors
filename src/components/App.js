@@ -4,7 +4,7 @@ import List from "./List";
 import SearchBar from "./SearchBar";
 
 class App extends React.Component {
-  state = { hex: "", colors: [], btnText: "Click Me" };
+  state = { hex: "Click me", colors: [], btnText: "Click Me" };
 
   onButtonClick = async () => {
     await fetch("http://www.colr.org/json/color/random", {
@@ -23,7 +23,7 @@ class App extends React.Component {
   };
 
   getSearchTerm = (term) => {
-    this.setState({ btnText: term });
+    this.setState({ hex: term });
   };
 
   handleSubmit = (term) => {
@@ -44,7 +44,7 @@ class App extends React.Component {
         <Button
           buttonClicked={this.onButtonClick}
           colorData={this.state}
-          btnText={this.state.btnText}
+          btnText={this.state.hex}
         />
         <List colors={this.state.colors} />
       </div>
