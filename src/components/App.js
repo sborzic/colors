@@ -4,10 +4,10 @@ import List from "./List";
 import SearchBar from "./SearchBar";
 
 class App extends React.Component {
-  state = { hex: "Click me", colors: [] };
+  state = { hex: "Click for random color", colors: [] };
 
   onButtonClick = async () => {
-    await fetch("http://www.colr.org/json/color/random", {
+    await fetch("/json/color/random", {
       cache: "no-cache",
     })
       .then((res) => res.json())
@@ -15,7 +15,7 @@ class App extends React.Component {
         let { hex, colors } = this.state;
         hex = `#${data.colors[0].hex}`;
         if (hex.length === 7 && colors.indexOf(hex) === -1) {
-          console.log(hex.length);
+          //added this condition because the server sometimes returns only '#'
           colors.push(hex);
           this.setState({ hex, colors });
         }
@@ -46,15 +46,17 @@ class App extends React.Component {
   render() {
     return (
       <div className='ui container'>
-        <SearchBar
-          handleSubmit={this.handleSubmit}
-          getSearchTerm={this.getSearchTerm}
-        />
-        <Button
-          buttonClicked={this.onButtonClick}
-          colorData={this.state}
-          btnText={this.state.hex}
-        />
+        <div className='ui container'>
+          <SearchBar
+            handleSubmit={this.handleSubmit}
+            getSearchTerm={this.getSearchTerm}
+          />
+          <Button
+            buttonClicked={this.onButtonClick}
+            colorData={this.state}
+            btnText={this.state.hex}
+          />
+        </div>
         <List
           handleDragEnd={this.handleDragEnd}
           colors={this.state.colors}

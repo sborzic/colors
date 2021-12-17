@@ -1,5 +1,4 @@
 import React from "react";
-import "./listStyle.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = (props) => {
@@ -11,6 +10,7 @@ const List = (props) => {
             className='ui segment'
             {...provided.droppableProps}
             ref={provided.innerRef}
+            style={{ backgroundColor: "whitesmoke" }}
           >
             <h1>List of colors</h1>
             {props.colors.map((color, index) => {
@@ -25,6 +25,8 @@ const List = (props) => {
                       style={{
                         ...provided.draggableProps.style,
                         color: `${color}`,
+                        textAlign: "center",
+                        fontSize: "1.4rem",
                         fontWeight:
                           color === props.currentColor ? "900" : "normal",
                       }}

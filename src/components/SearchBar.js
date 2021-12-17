@@ -17,11 +17,12 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className='ui segment'>
+      <div className='ui compact segment' style={{ marginTop: "10px" }}>
         <form onSubmit={this.onFormSubmit} className='ui form'>
           <div className='field'>
-            <label>Enter hex value</label>
+            <label className='label'>Enter hex value</label>
             <input
+              placeholder='Enter value with "#"'
               value={this.state.term}
               onChange={this.onInputChange}
               type='text'

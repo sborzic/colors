@@ -7,7 +7,10 @@ class Button extends React.Component {
         <button
           onClick={this.props.buttonClicked}
           className='ui button'
-          style={{ color: this.props.colorData.hex }}
+          style={{
+            color: this.props.colorData.hex,
+            width: "200px",
+          }}
         >
           {this.props.btnText}
         </button>
