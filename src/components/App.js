@@ -19,7 +19,8 @@ class App extends React.Component {
           colors.push(hex);
           this.setState({ hex, colors });
         }
-      });
+      })
+      .catch((error) => alert(error));
   };
 
   getSearchTerm = (term) => {
@@ -35,6 +36,7 @@ class App extends React.Component {
   };
 
   handleDragEnd = (result) => {
+    if (!result.destination) return;
     const items = this.state.colors;
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
