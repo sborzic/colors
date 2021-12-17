@@ -18,7 +18,7 @@ class App extends React.Component {
           //added this condition because the server sometimes returns only '#'
           colors.push(hex);
           this.setState({ hex, colors });
-        }
+        } else alert("Ooops something went wrong, please click again");
       })
       .catch((error) => alert(error));
   };
